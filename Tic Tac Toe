@@ -11,7 +11,6 @@ void placemarker(char board[],char marker,int position)
 {
     board[position] = marker;
 }
-
 int wincheck(char board[],char mark)
 {    
     return ((board[7] == mark && board[8] == mark && board[9] == mark) || //across the top
