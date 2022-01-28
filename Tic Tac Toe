@@ -30,8 +30,10 @@ int choosefirst(void)
     scanf("%d",&n);
     if(n==1)
        return 1;
-    else
+    else if(n==2)
        return 2;
+    else
+       choosefirst();
 }          
 int spacecheck(char board[],int position)
 {    
@@ -58,7 +60,7 @@ int playerchoice(char board[])
 int replay()
 {    
     char a[4];
-    printf("Do you want to play again? Enter Yes or No : ");
+    printf("Do you want to play again?\nEnter Yes or No : ");
     scanf("%s",a);
     if(a[0]=='y' || a[0] == 'Y')
        return 1;
