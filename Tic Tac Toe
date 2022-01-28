@@ -22,6 +22,31 @@ int wincheck(char board[],char mark)
     (board[7] == mark && board[5] == mark && board[3] == mark) || //diagonal
     (board[9] == mark && board[5] == mark && board[1] == mark)); //diagonal
 }
+void playerinput(char *p1marker,char *p2marker)
+{
+    printf("\nPlayer 1 : Do you want to be X or O? = ");
+    while(1)
+    {
+         char marker;
+         scanf(" %c",&marker);
+         if(marker=='X' || marker=='x')
+         {
+            (*p1marker) = 'X';
+            (*p2marker) = 'O';
+            break;
+         }
+         else if(marker=='O' || marker=='o')
+         {
+            (*p1marker) = 'O';
+            (*p2marker) = 'X';
+            break;
+         }
+         else
+         {
+            printf("Please enter X or O = ");
+         }   
+    }
+}
 int choosefirst(void)
 {
     int n;
@@ -78,28 +103,7 @@ int main()
    {
       char board[10] = {"          "};
       char p1marker,p2marker;
-      printf("\nPlayer 1 : Do you want to be X or O? = ");
-      while(1)
-      {
-         char marker;
-         scanf(" %c",&marker);
-         if(marker=='X' || marker=='x')
-         {
-            p1marker = 'X';
-            p2marker = 'O';
-            break;
-         }
-         else if(marker=='O' || marker=='o')
-         {
-            p1marker = 'O';
-            p2marker = 'X';
-            break;
-         }
-         else
-         {
-            printf("X or O? = ");
-         }   
-      }
+      playerinput(&p1marker,&p2marker);
       int turn = choosefirst();
       printf("Player %d will go first!\n",turn);
       int gameon;
