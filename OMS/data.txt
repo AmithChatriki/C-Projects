@@ -1,0 +1,5 @@
+4
+Ram 1RN20CS6544 MALE CEO ram.1234@gmail.com 400K 4 A-ve 8867357004
+Ravi 1RN20CS6545 MALE Salesman ravi.1234@gmail.com 400K 4 B-ve 8867357004
+Sukumar 1RN20CS6546 MALE Worker sukumar.1234@gmail.com 400K 4 B+ve 8867357004
+Mickey 1RN20CS6544 FEMALE Maanger mickey.1234@gmail.com 400K 4 A-ve 8867357004
