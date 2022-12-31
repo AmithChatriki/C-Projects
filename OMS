@@ -24,105 +24,8 @@ struct employees
 };
 typedef struct employees *ep;
 
-struct checkincheckout
-{
-   int noofdays;
-   char date[20];
-   char cin[10];
-   char cout[10];
-   int hours;
-   struct checkincheckout *link;
-};
-typedef struct checkincheckout nd;
 
 nd *a[MAX]={0};
-
-void createcincout(FILE *f)
-{
-   int i,j,noofdays,n;
-   
-   f=fopen("checkincheckout","r");
-   
-   fscanf(f,"%d",&n);
-   nd *t,*p;
-   for(i=1;i<=n;i++)
-   {
-      p=0;
-      fscanf(f,"%d",&noofdays);
-      
-      for(j=0;j<noofdays;j++)
-      {
-         fseek(f,-2,SEEK_CUR);
-         MALLOC(t,sizeof(nd));
-         t->link=0;
-         fscanf(f,"%d%s%s%s%d",&(t->noofdays),(t->date),(t->cin),(t->cout),&(t->hours));
-         
-         if(a[i]==0)
-            a[i]=t;
-         else
-            p->link=t;
-         p=t;
-         
-      }
-   }
-   fclose(f);
-}
-
-void writeinfileforcincout(ep root,FILE *f,int n)
-{
-   int i=1;
-   nd *first=0;
-   f=fopen("checkincheckout","w");
-   fprintf(f,"%d\n",n);
-   for(;a[i]!=0;i++)
-   {
-      fprintf(f,"%d ",(a[i]->noofdays));
-      for(first=a[i];first!=0;first=first->link)
-      {
-         fprintf(f,"%s %s %s %d ",(first->date),(first->cin),(first->cout),(first->hours));
-      }
-      fprintf(f,"\n");
-   }
-}
-
-void case6(ep r)
-{
-   int ch=1,n;
-   char id[20];
-   printf("\n\t\t\t\t\t\tENTER THE EMPLOYEE ID = ");
-   scanf("%s",id);
-   while(r)
-   {
-      if(!strcmp(id,r->empid))
-      {
-         printf("------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-         printf("\n EMPLOYEE NAME \tEMPLOYEE ID\tGENDER\tDESIGNATION\tEMAIL-ID\t\t\tSALARY\t\tLEAVES\t\tBLOOD GROUP\tCONTACT NUMBER\n");
-         printf("\n %s\t\t%s\t%s\t %s\t\t%s\t\t%s\t\t%d\t\t%s\t\t%ld\n",(r->empname),(r->empid),(r->gender),(r->designation),(r->emailid),(r->salary),(r->leaves),(r->bg),(r->phno));
-         break;
-      }
-      if(strcmp(id,r->empid)<1)
-      {
-          ch++;
-          r=r->llink;
-      }
-      else
-      {
-          ch++;
-          r=r->rlink;
-      }
-   }
-   if(!r)
-   {
-     printf("\n\t\t\t\t\t\tEMPLOYEE NOT FOUND\n\t\t\t\t\t\tTRY SEARCHING AGAIN!\n");
-     return;
-   }
-   nd *t;
-   t=a[ch];
-   printf("\n\t\t\t\tDATE\t\tCHECK-IN\tCHECK-OUT\tNUMBER OF HOURS WORKED\n");
-   for(;t!=0;t=t->link)
-     printf("\t\t\t\t%s\t%s\t\t%s\t\t%d\n",(t->date),(t->cin),(t->cout),(t->hours));
-}
-
 
 
 ep insertfromfile(ep root,ep t)
@@ -557,7 +460,7 @@ int main()
    {
       printf("------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
       printf("\n\t\t\t\t1.GET THE DETAILS OF ALL THE EMPLOYEES\t\t2.INSERT A NEW EMPLOYEE DETAILS\n");
-      printf("\n\t\t3.SEARCH AN EMPLOYEE       4.INCREMENT AN EMPLOYEE       5.FIRE AN EMPLOYEE       6.CHECK-IN CHECK-OUT OF EACH EMPLOYEE       7.EXIT");
+      printf("\n\t\t3.SEARCH AN EMPLOYEE       4.INCREMENT AN EMPLOYEE       5.FIRE AN EMPLOYEE       7.EXIT");
       
       int ch,choice;
       printf("\n");
@@ -595,8 +498,6 @@ int main()
           case 4 : case4(root);  //INCREMENT AN EMPLOYEE TO A PARTICULAR POSITION
                    break;
           case 5 : root = case5(root); //FIRE AN EMPLOYEE
-                   break;
-          case 6 : case6(root); //CHECK-IN AND CHECK-OUT OF EACH EMPLOYEE
                    break;
           case 7 : exit(0);
 
